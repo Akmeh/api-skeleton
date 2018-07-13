@@ -1,0 +1,39 @@
+api_base:
+  image: pablofmorales/apache-php7:7.2-apache
+  container_name: api_base
+  ports:
+    - "8000:80"
+  volumes:
+    - ./:/var/www/html/
+    - ./var/log:/var/log/apache2
+    - ./apache.conf:/etc/apache2/sites-enabled/apache.conf
+  external_links:
+    - api_redis:redis
+    - api_mysql:mysql
+
+  environment:
+    #XDebug Configuration
+    XDEBUG_CONFIG: "remote_host=192.168.100.148"
+    PHP_IDE_CONFIG: "serverName=APIContainer"
+
+api_redis:
+  container_name: api_redis
+  image: redis:latest
+  ports:
+    - "6379:6379"
+
+api_mysql:
+ image: mysql:5.7
+ container_name: api_mysql
+ ports:
+   - "3306:3306"
+ volumes:
+   - /mnt/sdb/var/lib/mysql
+
+ environment:
+   - MYSQL_DATABASE=api
+   - MYSQL_USER=api
+   - MYSQL_PASSWORD=apipasssord
+   - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+
+
