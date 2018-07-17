@@ -10,7 +10,8 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "akmeh/uuid": "^0.1",
-        "akmeh/auth0": "^0.6",
+        "akmeh/auth0": "^0.0.6",
+        "akmeh/http": "^0.1",
         "akmeh/api-transformer": "^0.1"
     },
     "require-dev": {
